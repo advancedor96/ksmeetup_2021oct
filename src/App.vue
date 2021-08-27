@@ -1,12 +1,21 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar app>9/4 怪人報名名單</v-app-bar>
+      <v-app-bar dark app elevation="0">
+
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+        ></v-img>
+      </template>
+      9/4 怪人報名名單</v-app-bar>
       <v-main>
         <v-card
-          class="mx-auto"
-          max-width="300"
+          class="mx-auto "
+          max-width="500"
           tile
+
         >
           <v-list dense>
               <v-list-item
