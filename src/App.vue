@@ -10,7 +10,7 @@
         ></v-img>
       </template>
       9/4 怪人報名名單</v-app-bar>
-      <v-main>
+      <v-main class="px-3">
         <div class="d-flex justify-center mt-8" v-if="isLoading">
           <v-progress-circular
             indeterminate
