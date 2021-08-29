@@ -32,9 +32,12 @@
                 <v-list-item-icon>
                   <v-icon v-text="`mdi-account`"></v-icon>
                 </v-list-item-icon>
-                <v-list-item-content>
-                  {{ item[0]? item[0] : '等你報名' }}
+                <v-list-item-content v-if="item">
+                  {{ item}}
                   <!-- <v-list-item-title v-text="item[0]"></v-list-item-title> -->
+                </v-list-item-content>
+                <v-list-item-content v-else>
+                  <span style="color: lightgray;">&lt;等你報名&gt;</span>
                 </v-list-item-content>
               </v-list-item>
           </v-list>
@@ -66,7 +69,22 @@ export default {
       try {
         this.isLoading = true
         const res = await axios.get('https://script.google.com/macros/s/AKfycbwgpc1LqrnlSBjeYHTTfSdzJQ-y-nkZ9oI8Wnr_LXAzrlIwoEzXbEEG-OlK9C2qrYrU/exec')
-        this.items = res.data
+        // console.log('res', res.data)
+
+        this.items = []
+        res.data.forEach(e => {
+          if (e[0] === '') {
+            console.log('發現為空，跳過')
+            return
+          }
+          this.items.push(e[0])
+        })
+        const length = this.items.length
+        if (length < 10) {
+          for (let i = 0; i < 10 - length; i++) {
+            this.items.push('')
+          }
+        }
       } catch (err) {
         console.log('err', err)
       } finally {
