@@ -9,7 +9,7 @@
           gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
         ></v-img>
       </template>
-      9/4 怪人報名名單</v-app-bar>
+      10/23 跨域交流名單</v-app-bar>
       <v-main class="px-3">
         <div class="d-flex justify-center mt-8" v-if="isLoading">
           <v-progress-circular
@@ -58,7 +58,6 @@ export default {
   },
   created () {
     this.load()
-    // https://script.googleusercontent.com/macros/echo?user_content_key=RQa3UV_bp_A7Ot7b2DI8pf30A6arE2OOTUcokNr27xbC3A-qT0h7SkFfNskX3AbNvZZdqKLHCGlBHlGwxlCpatVoL8S1QuYxm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnCJAaF2O3DjeG585D8Kdya5ggRYxt5IwwZRB3qdeyKo-1Wiw_r0D52gFfrcngihQDv55RuLsdhyDMU741UnYodE3UJ8JiiR8kA&lib=MlIA8paqZQMOFrrZqMEnbFiq1-vRkhSuq
   },
   data: () => ({
     items: [],
@@ -68,23 +67,23 @@ export default {
     async load () {
       try {
         this.isLoading = true
-        const res = await axios.get('https://script.google.com/macros/s/AKfycbwgpc1LqrnlSBjeYHTTfSdzJQ-y-nkZ9oI8Wnr_LXAzrlIwoEzXbEEG-OlK9C2qrYrU/exec')
-        // console.log('res', res.data)
+        const res = await axios.get('https://script.google.com/macros/s/AKfycbwFuT8Bg6q1xrr9Yh-56t50IhD7v5MwpB-xI4m38f3LRKSVcfW8Cl0OBXDy7hZy5bmarg/exec')
+        console.log('res', res.data)
 
-        this.items = []
-        res.data.forEach(e => {
-          if (e[0] === '') {
-            console.log('發現為空，跳過')
-            return
-          }
-          this.items.push(e[0])
-        })
-        const length = this.items.length
-        if (length < 10) {
-          for (let i = 0; i < 10 - length; i++) {
-            this.items.push('')
-          }
-        }
+        // this.items = []
+        // res.data.forEach(e => {
+        //   if (e[0] === '') {
+        //     console.log('發現為空，跳過')
+        //     return
+        //   }
+        //   this.items.push(e[0])
+        // })
+        // const length = this.items.length
+        // if (length < 10) {
+        //   for (let i = 0; i < 10 - length; i++) {
+        //     this.items.push('')
+        //   }
+        // }
       } catch (err) {
         console.log('err', err)
       } finally {
