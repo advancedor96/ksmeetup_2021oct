@@ -1,4 +1,4 @@
-# i_weirdo
+# 跨域交流2021年10月23報名名單
 
 ## Project setup
 ```

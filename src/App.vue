@@ -29,16 +29,19 @@
                 v-for="(item, i) in items"
                 :key="i"
               >
-                <v-list-item-icon>
+                <v-list-item-avatar>
                   <v-icon v-text="`mdi-account`"></v-icon>
-                </v-list-item-icon>
-                <v-list-item-content v-if="item">
-                  {{ item}}
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <strong><h2>{{ item[0] }}</h2></strong>
+                  <v-list-item-subtitle>{{ item[1] }}</v-list-item-subtitle>
+                  <v-list-item-subtitle>{{ item[2] }}</v-list-item-subtitle>
+                  <v-list-item-subtitle>{{ item[3] }}</v-list-item-subtitle>
+
                   <!-- <v-list-item-title v-text="item[0]"></v-list-item-title> -->
                 </v-list-item-content>
-                <v-list-item-content v-else>
-                  <span style="color: lightgray;">&lt;等你報名&gt;</span>
-                </v-list-item-content>
+
               </v-list-item>
           </v-list>
         </v-card>
@@ -68,25 +71,21 @@ export default {
       try {
         this.isLoading = true
         const res = await axios.get('https://script.google.com/macros/s/AKfycbwFuT8Bg6q1xrr9Yh-56t50IhD7v5MwpB-xI4m38f3LRKSVcfW8Cl0OBXDy7hZy5bmarg/exec')
-        console.log('res', res.data)
+        // console.log('res', res.data)
 
-        // this.items = []
-        // res.data.forEach(e => {
-        //   if (e[0] === '') {
-        //     console.log('發現為空，跳過')
-        //     return
-        //   }
-        //   this.items.push(e[0])
-        // })
-        // const length = this.items.length
-        // if (length < 10) {
-        //   for (let i = 0; i < 10 - length; i++) {
-        //     this.items.push('')
-        //   }
-        // }
+        this.items = []
+        res.data.forEach(e => {
+          if (e[0] === '') {
+            console.log('發現為空，跳過')
+            return
+          }
+          this.items.push(e)
+        })
       } catch (err) {
         console.log('err', err)
       } finally {
+        // console.log('處理後的: ', this.items)
+
         this.isLoading = false
       }
     }
