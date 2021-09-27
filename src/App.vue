@@ -30,7 +30,13 @@
                 :key="i"
               >
                 <v-list-item-avatar>
+                  <v-badge
+                    :content="i+1"
+                    color="green"
+                    overlap
+                  >
                   <v-icon v-text="`mdi-account`"></v-icon>
+                  </v-badge>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
